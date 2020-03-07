@@ -12,3 +12,9 @@ export type Player = {
   number: number
   type: keyof typeof PlayerType
 }
+
+export enum Step {
+  INTRO = 'INTRO',
+  CHOICE = 'CHOICE',
+  SCORE = 'SCORE',
+}

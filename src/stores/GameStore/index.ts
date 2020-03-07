@@ -1,12 +1,13 @@
 import Vue from 'vue'
 
-import { Scenes, Player } from './Game.types'
+import { Scenes, Player, Step } from './Game.types'
 
 export * from './Game.types'
 
 const state: {
   scene: keyof typeof Scenes
   players: [Player, Player]
+  step: keyof typeof Step
 } = Vue.observable({
   scene: 'MENU',
   players: [
@@ -19,6 +20,7 @@ const state: {
       type: 'COMPUTER',
     },
   ],
+  step: 'INTRO',
 })
 
 export default {
@@ -30,5 +32,9 @@ export default {
 
   updatePlayer(player: Player, index: number) {
     Vue.set(state.players, index, player)
+  },
+
+  updateStep(step: keyof typeof Step) {
+    state.step = step
   },
 }

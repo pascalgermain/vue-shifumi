@@ -43,6 +43,6 @@ export default Vue.extend({
 
 <style module lang="scss">
 .select {
-  margin: 20px auto 0;
+  margin: 20px auto;
 }
 </style>

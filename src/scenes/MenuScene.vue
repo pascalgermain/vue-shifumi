@@ -2,14 +2,14 @@
   <div>
     <div class="d-flex">
       <player-selection
-        v-for="(player, index) in GameStore.state.players"
+        v-for="(player, index) in players"
         :key="player.number"
         :readonly="index !== 0"
         :player="player"
-        @input="GameStore.updatePlayer($event, index)"
+        @input="updatePlayer($event, index)"
       />
     </div>
-    <button type="button" class="btn btn-primary" @click="start">Start</button>
+    <button type="button" class="btn btn-primary" @click="play">Play</button>
   </div>
 </template>
 
@@ -26,13 +26,17 @@ export default Vue.extend({
   },
 
   computed: {
-    GameStore() {
-      return GameStore
+    players() {
+      return GameStore.state.players
+    },
+
+    updatePlayer() {
+      return GameStore.updatePlayer
     },
   },
 
   methods: {
-    start() {
+    play() {
       GameStore.updateScene('GAME')
     },
   },
