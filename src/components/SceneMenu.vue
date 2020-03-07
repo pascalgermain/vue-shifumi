@@ -3,6 +3,7 @@
     <player-selection
       v-for="(player, index) in GameStore.state.players"
       :key="player.number"
+      :readonly="index !== 0"
       :player="player"
       @input="GameStore.updatePlayer($event, index)"
     />

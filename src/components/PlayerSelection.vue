@@ -1,7 +1,10 @@
 <template>
   <div class="d-flex flex-column w-100">
     <h2>Player {{ player.number }}</h2>
-    <select :class="$style.select" :value="player.type" @input="updateType">
+    <div v-if="readonly" :class="$style.select">
+      {{ playerTypes[player.type] }}
+    </div>
+    <select v-else :class="$style.select" :value="player.type" @input="updateType">
       <option v-for="(text, value) in playerTypes" :key="value" :value="value">{{ text }}</option>
     </select>
   </div>
@@ -19,7 +22,8 @@ const playerTypes = {
 
 export default Vue.extend({
   props: {
-    player: Object as () => Player,
+    player: { type: Object as () => Player, required: true },
+    readonly: Boolean,
   },
 
   computed: {
@@ -31,10 +35,7 @@ export default Vue.extend({
   methods: {
     updateType(event: Event) {
       const type = (event.target as HTMLSelectElement).value
-      this.$emit('input', {
-        ...this.player,
-        type,
-      })
+      this.$emit('input', { ...this.player, type })
     },
   },
 })
