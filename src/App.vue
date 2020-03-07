@@ -9,13 +9,10 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue'
 
+import GameStore, { Scenes } from '@/stores/GameStore'
+
 import SceneMenu from '@/components/SceneMenu.vue'
 import SceneGame from '@/components/SceneGame.vue'
-
-enum Scenes {
-  MENU = 'MENU',
-  GAME = 'GAME',
-}
 
 const sceneComponents = {
   [Scenes.MENU]: SceneMenu,
@@ -23,17 +20,9 @@ const sceneComponents = {
 }
 
 export default Vue.extend({
-  data(): {
-    scene: keyof typeof Scenes
-  } {
-    return {
-      scene: 'MENU',
-    }
-  },
-
   computed: {
     sceneComponent(): VueConstructor<Vue> {
-      return sceneComponents[this.scene]
+      return sceneComponents[GameStore.state.scene]
     },
   },
 })
