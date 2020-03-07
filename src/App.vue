@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" :class="$style.app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>Vue Shifumi</h1>
-    <component :is="sceneComponent" />
+    <component :is="sceneComponent" :class="$style.scene" />
   </div>
 </template>
 
@@ -28,36 +28,42 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
-#app {
+<style module lang="scss">
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  h1 {
+    margin: 20px 0 0;
+  }
+
+  h2,
+  h3 {
+    margin: 40px 0 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  a {
+    color: #42b983;
+  }
 }
 
-h1 {
-  margin: 20px 0 0;
-}
-
-h2,
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.scene {
+  display: flex;
+  max-width: 1200px;
+  margin: 40px auto 0;
 }
 </style>

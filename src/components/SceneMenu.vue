@@ -1,11 +1,30 @@
 <template>
   <div>
-    <h2>Menu Scene</h2>
+    <player-selection
+      v-for="(player, index) in GameStore.state.players"
+      :key="player.number"
+      :player="player"
+      @input="GameStore.updatePlayer($event, index)"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+import GameStore from '@/stores/GameStore'
+
+import PlayerSelection from '@/components/PlayerSelection.vue'
+
+export default Vue.extend({
+  components: {
+    PlayerSelection,
+  },
+
+  computed: {
+    GameStore() {
+      return GameStore
+    },
+  },
+})
 </script>
