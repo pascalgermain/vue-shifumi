@@ -1,7 +1,7 @@
 <template>
-  <div :class="$style.container">
+  <div class="d-flex flex-column w-100">
     <h2>Player {{ player.number }}</h2>
-    <select :value="player.type" @input="updateType">
+    <select :class="$style.select" :value="player.type" @input="updateType">
       <option v-for="(text, value) in playerTypes" :key="value" :value="value">{{ text }}</option>
     </select>
   </div>
@@ -41,13 +41,7 @@ export default Vue.extend({
 </script>
 
 <style module lang="scss">
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  select {
-    margin: 20px auto 0;
-  }
+.select {
+  margin: 20px auto 0;
 }
 </style>

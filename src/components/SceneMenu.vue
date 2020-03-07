@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex">
     <player-selection
       v-for="(player, index) in GameStore.state.players"
       :key="player.number"
