@@ -24,6 +24,10 @@ const state: {
 export default {
   state,
 
+  updateScene(scene: keyof typeof Scenes) {
+    state.scene = scene
+  },
+
   updatePlayer(player: Player, index: number) {
     Vue.set(state.players, index, player)
   },
