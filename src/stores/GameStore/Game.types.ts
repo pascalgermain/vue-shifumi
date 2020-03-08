@@ -18,3 +18,9 @@ export enum Step {
   CHOICE = 'CHOICE',
   SCORE = 'SCORE',
 }
+
+export enum Choice {
+  STONE = 'STONE',
+  PAPER = 'PAPER',
+  SCISSOR = 'SCISSOR',
+}

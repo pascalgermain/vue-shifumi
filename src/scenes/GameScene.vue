@@ -1,11 +1,9 @@
 <template>
-  <game-intro v-if="step === 'INTRO'" @done="choice" />
-  <div v-else-if="step === 'CHOICE'">
-    <button type="button" class="btn btn-primary my" @click="choose">Choose</button>
-  </div>
+  <game-intro v-if="step === 'INTRO'" @done="choose" />
+  <game-choice v-else-if="step === 'CHOICE'" @done="score" />
   <div v-else-if="step === 'SCORE'">
     <button type="button" class="btn btn-primary mx my" @click="start">Replay</button>
-    <button type="button" class="btn btn-primary mx my" @click="exit">Exit</button>
+    <button type="button" class="btn btn-primary mx my" @click="menu">Menu</button>
   </div>
 </template>
 
@@ -15,10 +13,12 @@ import Vue from 'vue'
 import GameStore from '@/stores/GameStore'
 
 import GameIntro from '@/components/GameIntro.vue'
+import GameChoice from '@/components/GameChoice.vue'
 
 export default Vue.extend({
   components: {
     GameIntro,
+    GameChoice,
   },
 
   computed: {
@@ -36,15 +36,15 @@ export default Vue.extend({
       GameStore.updateStep('INTRO')
     },
 
-    choice() {
+    choose() {
       GameStore.updateStep('CHOICE')
     },
 
-    choose() {
+    score() {
       GameStore.updateStep('SCORE')
     },
 
-    exit() {
+    menu() {
       GameStore.updateScene('MENU')
     },
   },

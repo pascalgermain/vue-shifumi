@@ -4,7 +4,6 @@
       <player-selection
         v-for="(player, index) in players"
         :key="player.number"
-        :readonly="index !== 0"
         :player="player"
         @input="updatePlayer($event, index)"
       />
