@@ -1,11 +1,5 @@
 <template>
-  <img
-    :src="src"
-    :alt="title"
-    :title="title"
-    :class="[$style.image, { [$style.clickable]: clickable, [$style.active]: active }]"
-    @click="click"
-  />
+  <img v-bind="{ src, alt, title }" :class="classes" @click="click" />
 </template>
 
 <script lang="ts">
@@ -19,6 +13,7 @@ export default Vue.extend({
     choice: { type: String as () => keyof typeof Choice, required: true },
     number: { type: Number, required: true },
     clickable: Boolean,
+    disabled: Boolean,
     active: Boolean,
   },
 
@@ -31,8 +26,23 @@ export default Vue.extend({
       return require(`@/assets/choices/${this.choiceLower}_${this.number}.png`)
     },
 
-    title(): string {
+    alt(): string {
       return ucfirst(this.choiceLower)
+    },
+
+    title(): string {
+      return this.disabled ? '' : this.alt
+    },
+
+    classes(): unknown {
+      return [
+        this.$style.image,
+        {
+          [this.$style.clickable]: this.clickable,
+          [this.$style.disabled]: this.disabled,
+          [this.$style.active]: this.active,
+        },
+      ]
     },
   },
 
@@ -55,6 +65,11 @@ $border-width: 3px;
 
 .clickable {
   cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .active {

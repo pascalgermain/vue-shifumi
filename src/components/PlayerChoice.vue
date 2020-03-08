@@ -8,6 +8,7 @@
         :choice="choice"
         :number="player.number"
         :clickable="!readonly"
+        :disabled="isComputer"
         :active="selected(index)"
         @click="update(index)"
       />
