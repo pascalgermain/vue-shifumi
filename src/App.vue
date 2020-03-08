@@ -9,14 +9,14 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue'
 
-import GameStore, { Scenes } from '@/stores/GameStore'
+import GameStore, { Scene } from '@/stores/GameStore'
 
 import MenuScene from '@/scenes/MenuScene.vue'
 import GameScene from '@/scenes/GameScene.vue'
 
 const sceneComponents = {
-  [Scenes.MENU]: MenuScene,
-  [Scenes.GAME]: GameScene,
+  [Scene.MENU]: MenuScene,
+  [Scene.GAME]: GameScene,
 }
 
 export default Vue.extend({

@@ -1,11 +1,11 @@
 import Vue from 'vue'
 
-import { Scenes, Player, Step, Choice } from './Game.types'
+import { Scene, Player, Step, Choice } from './Game.types'
 
 export * from './Game.types'
 
 const state: {
-  scene: keyof typeof Scenes
+  scene: keyof typeof Scene
   players: Player[]
   step: keyof typeof Step
   choices: (keyof typeof Choice | null)[]
@@ -28,7 +28,7 @@ const state: {
 export default {
   state,
 
-  updateScene(scene: keyof typeof Scenes) {
+  updateScene(scene: keyof typeof Scene) {
     state.scene = scene
   },
 
