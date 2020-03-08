@@ -1,6 +1,17 @@
+const productionMode = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-shifumi' : '/',
+  publicPath: productionMode ? '/vue-shifumi' : '/',
   productionSourceMap: false,
+
+  css: {
+    requireModuleExtension: true,
+    loaderOptions: {
+      css: {
+        modules: productionMode ? { localIdentName: '[hash:base64:5]' } : {},
+      },
+    },
+  },
 
   chainWebpack: config => {
     ;['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type =>

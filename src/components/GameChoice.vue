@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="flex">
     <player-choice
       v-for="(player, index) in players"
       :key="player.number"

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column w-full">
+  <div class="flex flex-column w-full">
     <h2>Player {{ player.number }}</h2>
     <select v-model="type" class="mx-auto mt">
       <option v-for="(text, value) in playerTypes" :key="value" :value="value">{{ text }}</option>

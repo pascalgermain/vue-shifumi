@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex flex-column w-full">
+  <div class="flex flex-column w-full">
     <h2>Player {{ player.number }}</h2>
-    <div class="d-flex mx-auto">
+    <div class="flex mx-auto">
       <choice-image
         v-for="(choice, index) in choices"
         :key="choice"
