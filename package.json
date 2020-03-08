@@ -1,7 +1,9 @@
 {
   "name": "vue-shifumi",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A Vue.js Shifumi game.",
+  "author": "Pascal Germain <pascalgermain@me.com>",
+  "homepage": "http://pascalgermain.github.io/vue-shifumi",
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",

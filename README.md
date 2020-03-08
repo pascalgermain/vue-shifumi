@@ -1,5 +1,9 @@
 # Vue Shifumi
 
+> A Vue.js Shifumi game.
+
+> http://pascalgermain.github.io/vue-shifumi/
+
 ## Project setup
 ```
 npm install

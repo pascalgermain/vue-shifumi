@@ -1,4 +1,6 @@
 module.exports = {
+  publicPath: '/vue-shifumi',
+
   chainWebpack: config => {
     ;['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type =>
       config.module
