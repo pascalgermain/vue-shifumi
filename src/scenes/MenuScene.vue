@@ -8,7 +8,7 @@
         @input="updatePlayer($event, index)"
       />
     </div>
-    <button type="button" class="btn btn-primary" @click="play">Play</button>
+    <button type="button" class="btn btn-primary mt" @click="play">Play</button>
   </div>
 </template>
 

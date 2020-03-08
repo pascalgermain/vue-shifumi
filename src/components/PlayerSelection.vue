@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex flex-column w-100">
+  <div class="d-flex flex-column w-full">
     <h2>Player {{ player.number }}</h2>
-    <select :class="$style.select" :value="player.type" @input="updateType">
+    <select v-model="type" class="mx-auto mt">
       <option v-for="(text, value) in playerTypes" :key="value" :value="value">{{ text }}</option>
     </select>
   </div>
@@ -26,19 +26,15 @@ export default Vue.extend({
     playerTypes() {
       return playerTypes
     },
-  },
 
-  methods: {
-    updateType(event: Event) {
-      const type = (event.target as HTMLSelectElement).value
-      this.$emit('input', { ...this.player, type })
+    type: {
+      get(): Player['type'] {
+        return this.player.type
+      },
+      set(type: Player['type']) {
+        this.$emit('input', { ...this.player, type })
+      },
     },
   },
 })
 </script>
-
-<style module lang="scss">
-.select {
-  margin: 20px auto;
-}
-</style>

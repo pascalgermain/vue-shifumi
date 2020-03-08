@@ -1,8 +1,8 @@
 <template>
-  <div id="app" :class="$style.app">
+  <div id="app" :class="['text-center', $style.app]">
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>Vue Shifumi</h1>
-    <component :is="sceneComponent" :class="$style.scene" />
+    <component :is="sceneComponent" :class="['mx-auto mt', $style.scene]" />
   </div>
 </template>
 
@@ -31,11 +31,9 @@ export default Vue.extend({
 <style module lang="scss">
 .app {
   margin-top: 60px;
-  text-align: center;
 }
 
 .scene {
   max-width: 1200px;
-  margin: 40px auto 0;
 }
 </style>

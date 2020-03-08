@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="[$style.text, { [$style.hidden]: hidden }]">{{ text }}</div>
+    <div :class="['text-primary', $style.text, { [$style.hidden]: hidden }]">{{ text }}</div>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import Vue from 'vue'
 
 import { sleep } from '@/helpers/commonHelpers'
 
-const timing = 300
+const timing = 200
 
 export default Vue.extend({
   data() {
@@ -52,11 +52,10 @@ export default Vue.extend({
 }
 
 .text {
-  margin-top: 90px;
+  margin-top: 80px;
   font-size: 40px;
   font-weight: bold;
   transition: opacity $transition-duration;
-  color: $primary;
 }
 
 .hidden {

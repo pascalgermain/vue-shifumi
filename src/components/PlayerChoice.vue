@@ -1,16 +1,15 @@
 <template>
-  <div :class="['d-flex flex-column w-100', $style.container, { [$style.readonly]: readonly }]">
+  <div class="d-flex flex-column w-full">
     <h2>Player {{ player.number }}</h2>
-    <div class="d-flex m-auto">
-      <img
-        v-for="(image, index) in images"
-        v-let="[(title = ucfirst(choices[index], true))]"
-        :key="index"
-        :src="image"
-        :alt="title"
-        :title="title"
-        :class="$style.image"
-        @click="!readonly && update(index)"
+    <div class="d-flex mx-auto">
+      <choice-image
+        v-for="(choice, index) in choices"
+        :key="choice"
+        :choice="choice"
+        :number="player.number"
+        :clickable="!readonly"
+        :active="selected(index)"
+        @click="update(index)"
       />
     </div>
   </div>
@@ -19,10 +18,15 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { ucfirst } from '@/helpers/commonHelpers'
 import { Player, Choice } from '@/stores/GameStore'
 
+import ChoiceImage from '@/components/ChoiceImage.vue'
+
 export default Vue.extend({
+  components: {
+    ChoiceImage,
+  },
+
   props: {
     player: { type: Object as () => Player, required: true },
   },
@@ -38,30 +42,27 @@ export default Vue.extend({
       return Object.keys(Choice) as (keyof typeof Choice)[]
     },
 
-    images(): string[] {
-      const { number } = this.player
-      return this.choices.map(choice =>
-        require(`@/assets/choices/${choice.toLowerCase()}_${number}.png`),
-      )
+    isComputer() {
+      return this.player.type === 'COMPUTER'
     },
 
     readonly(): boolean {
-      return this.player.type === 'COMPUTER' || !!this.choice
-    },
-
-    ucfirst() {
-      return ucfirst
+      return this.isComputer || !!this.choice
     },
   },
 
   mounted() {
-    if (this.readonly) this.computerChoose()
+    if (this.isComputer) this.computerChoose()
   },
 
   methods: {
     computerChoose() {
       const index = Math.floor(Math.random() * this.choices.length)
       this.update(index)
+    },
+
+    selected(index: number) {
+      return !this.isComputer && this.choice === this.choices[index]
     },
 
     update(index: number) {
@@ -71,16 +72,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style module lang="scss">
-.image {
-  width: 57px;
-  height: 57px;
-  margin: 20px 4px 0;
-  border: 1px;
-
-  .container:not(.readonly) & {
-    cursor: pointer;
-  }
-}
-</style>

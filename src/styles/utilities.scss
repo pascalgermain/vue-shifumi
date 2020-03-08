@@ -6,12 +6,13 @@
   flex-direction: column;
 }
 
-.w-100 {
+.w-full {
   width: 100%;
 }
 
-.m-auto {
-  margin: auto;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mx {
@@ -19,7 +20,14 @@
   margin-right: 20px;
 }
 
-.my {
-  margin-top: 40px;
-  margin-bottom: 40px;
+.mt {
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: $primary;
 }

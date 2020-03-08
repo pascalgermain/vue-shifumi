@@ -21,6 +21,6 @@ export enum Step {
 
 export enum Choice {
   STONE = 'STONE',
-  PAPER = 'PAPER',
   SCISSOR = 'SCISSOR',
+  PAPER = 'PAPER',
 }

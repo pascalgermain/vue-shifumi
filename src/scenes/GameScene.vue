@@ -1,29 +1,30 @@
 <template>
-  <game-intro v-if="step === 'INTRO'" @done="choose" />
-  <game-choice v-else-if="step === 'CHOICE'" @done="score" />
-  <div v-else-if="step === 'SCORE'">
-    <button type="button" class="btn btn-primary mx my" @click="start">Replay</button>
-    <button type="button" class="btn btn-primary mx my" @click="menu">Menu</button>
-  </div>
+  <component :is="component.is" v-on="component.on" />
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { VueConstructor } from 'vue'
 
-import GameStore from '@/stores/GameStore'
+import GameStore, { Step } from '@/stores/GameStore'
 
 import GameIntro from '@/components/GameIntro.vue'
 import GameChoice from '@/components/GameChoice.vue'
+import GameScore from '@/components/GameScore.vue'
 
 export default Vue.extend({
   components: {
     GameIntro,
     GameChoice,
+    GameScore,
   },
 
   computed: {
-    step() {
-      return GameStore.state.step
+    component(): { is: VueConstructor<Vue>; on: Record<string, () => void> } {
+      return {
+        [Step.INTRO]: { is: GameIntro, on: { done: this.choose } },
+        [Step.CHOICE]: { is: GameChoice, on: { done: this.score } },
+        [Step.SCORE]: { is: GameScore, on: { start: this.start, menu: this.menu } },
+      }[GameStore.state.step]
     },
   },
 
