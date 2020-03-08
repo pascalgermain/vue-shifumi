@@ -1,6 +1,5 @@
 <template>
   <img
-    v-let="[(title = ucfirst(choice, true))]"
     :src="src"
     :alt="title"
     :title="title"
@@ -24,12 +23,16 @@ export default Vue.extend({
   },
 
   computed: {
-    src(): string {
-      return require(`@/assets/choices/${this.choice.toLowerCase()}_${this.number}.png`)
+    choiceLower(): string {
+      return this.choice.toLowerCase()
     },
 
-    ucfirst() {
-      return ucfirst
+    src(): string {
+      return require(`@/assets/choices/${this.choiceLower}_${this.number}.png`)
+    },
+
+    title(): string {
+      return ucfirst(this.choiceLower)
     },
   },
 

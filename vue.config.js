@@ -1,5 +1,6 @@
 module.exports = {
-  publicPath: '/vue-shifumi',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-shifumi' : '/',
+  productionSourceMap: false,
 
   chainWebpack: config => {
     ;['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type =>
