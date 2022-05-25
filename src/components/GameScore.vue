@@ -40,8 +40,8 @@ export default Vue.extend({
     },
 
     choiceIndexes(): number[] {
-      return this.choices.map(choice =>
-        this.choiceKeys.findIndex(choiceKey => choice === choiceKey),
+      return this.choices.map((choice) =>
+        this.choiceKeys.findIndex((choiceKey) => choice === choiceKey),
       )
     },
 

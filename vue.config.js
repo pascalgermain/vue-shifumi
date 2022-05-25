@@ -1,20 +1,24 @@
+const { defineConfig } = require('@vue/cli-service')
+
 const productionMode = process.env.NODE_ENV === 'production'
 
-module.exports = {
+module.exports = defineConfig({
   publicPath: productionMode ? '/vue-shifumi' : '/',
   productionSourceMap: false,
 
   css: {
-    requireModuleExtension: true,
     loaderOptions: {
       css: {
-        modules: productionMode ? { localIdentName: '[hash:base64:5]' } : {},
+        modules: {
+          auto: true,
+          ...(productionMode && { localIdentName: '[hash:base64:5]' }),
+        },
       },
     },
   },
 
-  chainWebpack: config => {
-    ;['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type =>
+  chainWebpack: (config) => {
+    ;['vue-modules', 'vue', 'normal-modules', 'normal'].forEach((type) =>
       config.module
         .rule('scss')
         .oneOf(type)
@@ -23,9 +27,9 @@ module.exports = {
         .options({ patterns: ['src/styles/variables.scss'] }),
     )
 
-    config.plugin('html').tap(args => {
+    config.plugin('html').tap((args) => {
       args[0].title = 'Vue Shifumi'
       return args
     })
   },
-}
+})

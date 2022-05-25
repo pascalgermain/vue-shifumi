@@ -27,7 +27,7 @@ export default Vue.extend({
     },
 
     allChose(): boolean {
-      return GameStore.state.choices.every(choice => choice)
+      return GameStore.state.choices.every((choice) => choice)
     },
   },
 
