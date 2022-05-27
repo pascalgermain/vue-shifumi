@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div :class="['text-primary', $style.text, { [$style.hidden]: hidden }]">{{ text }}</div>
-  </div>
+  <div :class="['text-primary', $style.text, { [$style.hidden]: hidden }]">{{ text }}</div>
 </template>
 
 <script lang="ts">

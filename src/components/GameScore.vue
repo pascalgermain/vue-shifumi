@@ -9,8 +9,8 @@
       </div>
     </div>
     <h2>{{ score }}</h2>
-    <button type="button" class="btn btn-primary mx mt" @click="update('start')">Replay</button>
-    <button type="button" class="btn btn-primary mx mt" @click="update('menu')">Menu</button>
+    <button class="btn btn-primary mx mt" @click="update('start')">Replay</button>
+    <button class="btn btn-primary mx mt" @click="update('menu')">Menu</button>
   </div>
 </template>
 
