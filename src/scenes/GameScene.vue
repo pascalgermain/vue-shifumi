@@ -7,8 +7,8 @@ import Vue, { VueConstructor } from 'vue'
 
 import GameStore, { Step } from '@/stores/GameStore'
 
-import GameIntro from '@/components/GameIntro.vue'
 import GameChoice from '@/components/GameChoice.vue'
+import GameIntro from '@/components/GameIntro.vue'
 import GameScore from '@/components/GameScore.vue'
 
 export default Vue.extend({

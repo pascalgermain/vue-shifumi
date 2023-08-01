@@ -10,11 +10,11 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue'
 
+import GameScene from '@/scenes/GameScene.vue'
+import MenuScene from '@/scenes/MenuScene.vue'
 import GameStore, { Scene } from '@/stores/GameStore'
 
 import GithubCorner from '@/components/GithubCorner.vue'
-import MenuScene from '@/scenes/MenuScene.vue'
-import GameScene from '@/scenes/GameScene.vue'
 
 const sceneComponents = {
   [Scene.MENU]: MenuScene,

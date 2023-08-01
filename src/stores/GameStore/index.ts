@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import { Scene, Player, Step, Choice } from './Game.types'
+import { Choice, Player, Scene, Step } from './Game.types'
 
 export * from './Game.types'
 

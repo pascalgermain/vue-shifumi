@@ -19,7 +19,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { Player, Choice } from '@/stores/GameStore'
+import { Choice, Player } from '@/stores/GameStore'
 
 import ChoiceImage from '@/components/ChoiceImage.vue'
 
