@@ -6,20 +6,20 @@
 
 ## Project setup
 ```bash
-npm install
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ### Compiles and minifies for production
 ```bash
-npm run build
+pnpm build
 ```
 
 ### Lints and fixes files
 ```bash
-npm run lint
+pnpm lint
 ```
