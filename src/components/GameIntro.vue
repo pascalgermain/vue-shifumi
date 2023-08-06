@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
-import { sleep } from '@/helpers/commonHelpers'
+import { sleep } from '@/utils/common'
 
 const timing = 200
 
-export default Vue.extend({
+export default defineComponent({
   data() {
     return {
       text: '',

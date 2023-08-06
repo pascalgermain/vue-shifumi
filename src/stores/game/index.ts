@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
-import { Choice, Player, Scene, Step } from './Game.types'
+import { Choice, Player, Scene, Step } from './types'
 
-export * from './Game.types'
+export * from './types'
 
 const state: {
   scene: keyof typeof Scene

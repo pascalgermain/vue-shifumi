@@ -3,14 +3,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, PropType } from 'vue'
 
-import { ucfirst } from '@/helpers/commonHelpers'
-import { Choice } from '@/stores/GameStore'
+import { Choice } from '@/stores/game'
+import { ucfirst } from '@/utils/common'
+import { CssClass } from '@/utils/types'
 
-export default Vue.extend({
+export default defineComponent({
   props: {
-    choice: { type: String as () => keyof typeof Choice, required: true },
+    choice: { type: String as PropType<keyof typeof Choice | null>, required: true },
     number: { type: Number, required: true },
     clickable: Boolean,
     disabled: Boolean,
@@ -19,11 +20,11 @@ export default Vue.extend({
 
   computed: {
     choiceLower(): string {
-      return this.choice.toLowerCase()
+      return this.choice?.toLowerCase() || ''
     },
 
     src(): string {
-      return require(`@/assets/choices/${this.choiceLower}_${this.number}.png`)
+      return this.choice ? require(`@/assets/choices/${this.choiceLower}_${this.number}.png`) : ''
     },
 
     alt(): string {
@@ -34,7 +35,7 @@ export default Vue.extend({
       return this.disabled ? '' : this.alt
     },
 
-    classes(): unknown {
+    classes(): CssClass {
       return [
         this.$style.image,
         {

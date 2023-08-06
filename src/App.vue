@@ -1,44 +1,40 @@
 <template>
-  <div id="app" :class="['text-center', $style.app]">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <h1>Vue Shifumi</h1>
-    <component :is="sceneComponent" :class="['mx-auto mt', $style.scene]" />
+  <div id="app" class="text-center">
     <GithubCorner url="pascalgermain/vue-shifumi" />
+
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <h1>Shifumi</h1>
+
+    <Component :is="sceneComponent" :class="['mx-auto mt', $style.scene]" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from 'vue'
+import { Component, defineComponent } from 'vue'
 
-import GameScene from '@/scenes/GameScene.vue'
-import MenuScene from '@/scenes/MenuScene.vue'
-import GameStore, { Scene } from '@/stores/GameStore'
+import game, { Scene } from '@/stores/game'
 
-import GithubCorner from '@/components/GithubCorner.vue'
+import GithubCorner from './components/GithubCorner.vue'
+import GameScene from './scenes/GameScene.vue'
+import MenuScene from './scenes/MenuScene.vue'
 
 const sceneComponents = {
   [Scene.MENU]: MenuScene,
   [Scene.GAME]: GameScene,
 }
 
-export default Vue.extend({
-  components: {
-    GithubCorner,
-  },
+export default defineComponent({
+  components: { GithubCorner },
 
   computed: {
-    sceneComponent(): VueConstructor<Vue> {
-      return sceneComponents[GameStore.state.scene]
+    sceneComponent(): Component {
+      return sceneComponents[game.state.scene]
     },
   },
 })
 </script>
 
 <style module lang="scss">
-.app {
-  margin-top: 60px;
-}
-
 .scene {
   max-width: 1200px;
 }

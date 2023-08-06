@@ -8,22 +8,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, PropType } from 'vue'
 
-import { Player, PlayerType } from '@/stores/GameStore'
+import { Player, PlayerType } from '@/stores/game'
 
 const playerTypes = {
   [PlayerType.HUMAN]: 'Human',
   [PlayerType.COMPUTER]: 'Computer',
 }
 
-export default Vue.extend({
+export default defineComponent({
   props: {
-    player: { type: Object as () => Player, required: true },
+    player: { type: Object as PropType<Player>, required: true },
   },
 
   computed: {
-    playerTypes() {
+    playerTypes(): typeof playerTypes {
       return playerTypes
     },
 

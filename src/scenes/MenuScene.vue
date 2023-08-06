@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex">
-      <player-selection
+      <PlayerSelection
         v-for="(player, index) in players"
         :key="player.number"
         :player="player"
@@ -13,30 +13,28 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
-import GameStore from '@/stores/GameStore'
+import game from '@/stores/game'
 
 import PlayerSelection from '@/components/PlayerSelection.vue'
 
-export default Vue.extend({
-  components: {
-    PlayerSelection,
-  },
+export default defineComponent({
+  components: { PlayerSelection },
 
   computed: {
-    players() {
-      return GameStore.state.players
+    players(): typeof game.state.players {
+      return game.state.players
     },
 
-    updatePlayer() {
-      return GameStore.updatePlayer
+    updatePlayer(): typeof game.updatePlayer {
+      return game.updatePlayer
     },
   },
 
   methods: {
     play() {
-      GameStore.updateScene('GAME')
+      game.updateScene('GAME')
     },
   },
 })

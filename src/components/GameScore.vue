@@ -4,7 +4,7 @@
       <div v-for="(player, index) in players" :key="player.number" class="flex flex-column w-full">
         <h2>Player {{ player.number }}</h2>
         <div class="flex mx-auto">
-          <choice-image :choice="choices[index]" :number="player.number" />
+          <ChoiceImage :choice="choices[index]" :number="player.number" />
         </div>
       </div>
     </div>
@@ -15,27 +15,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
-import GameStore, { Choice } from '@/stores/GameStore'
+import game, { Choice } from '@/stores/game'
 
 import ChoiceImage from '@/components/ChoiceImage.vue'
 
-export default Vue.extend({
-  components: {
-    ChoiceImage,
-  },
+export default defineComponent({
+  components: { ChoiceImage },
 
   computed: {
-    players() {
-      return GameStore.state.players
+    players(): typeof game.state.players {
+      return game.state.players
     },
 
-    choices() {
-      return GameStore.state.choices
+    choices(): typeof game.state.choices {
+      return game.state.choices
     },
 
-    choiceKeys() {
+    choiceKeys(): (keyof typeof Choice)[] {
       return Object.keys(Choice) as (keyof typeof Choice)[]
     },
 
