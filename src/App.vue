@@ -34,6 +34,16 @@ export default defineComponent({
 })
 </script>
 
+<style lang="scss">
+#app {
+  margin-top: 50px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $secondary;
+}
+</style>
+
 <style module lang="scss">
 .scene {
   max-width: 1200px;

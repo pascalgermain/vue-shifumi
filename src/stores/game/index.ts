@@ -4,6 +4,8 @@ import { Choice, Player, Scene, Step } from './types'
 
 export * from './types'
 
+export const choices = Object.keys(Choice) as (keyof typeof Choice)[]
+
 const state: {
   scene: keyof typeof Scene
   players: Player[]

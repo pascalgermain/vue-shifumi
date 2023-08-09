@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-column w-full">
     <h2>Player {{ player.number }}</h2>
+
     <div class="flex mx-auto">
       <ChoiceImage
         v-for="(choice, index) in choices"
@@ -9,7 +10,7 @@
         :number="player.number"
         :clickable="!readonly"
         :disabled="isComputer"
-        :active="selected(index)"
+        :active="selected[index]"
         @click="update(index)"
       />
     </div>
@@ -19,7 +20,8 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 
-import { Choice, Player } from '@/stores/game'
+import { Choice, choices, Player } from '@/stores/game'
+import { getRandomInt } from '@/utils/common'
 
 import ChoiceImage from '@/components/ChoiceImage.vue'
 
@@ -30,23 +32,27 @@ export default defineComponent({
     player: { type: Object as PropType<Player>, required: true },
   },
 
+  setup() {
+    return { choices }
+  },
+
   data() {
     return {
-      choice: null as keyof typeof Choice | null,
+      playerChoice: null as keyof typeof Choice | null,
     }
   },
 
   computed: {
-    choices(): (keyof typeof Choice)[] {
-      return Object.keys(Choice) as (keyof typeof Choice)[]
-    },
-
     isComputer(): boolean {
       return this.player.type === 'COMPUTER'
     },
 
     readonly(): boolean {
-      return this.isComputer || !!this.choice
+      return this.isComputer || !!this.playerChoice
+    },
+
+    selected(): boolean[] {
+      return choices.map((choice) => !this.isComputer && this.playerChoice === choice)
     },
   },
 
@@ -56,17 +62,13 @@ export default defineComponent({
 
   methods: {
     computerChoose() {
-      const index = Math.floor(Math.random() * this.choices.length)
+      const index = getRandomInt(choices.length)
       this.update(index)
     },
 
-    selected(index: number) {
-      return !this.isComputer && this.choice === this.choices[index]
-    },
-
     update(index: number) {
-      this.choice = this.choices[index]
-      this.$emit('input', this.choice)
+      this.playerChoice = choices[index]
+      this.$emit('input', this.playerChoice)
     },
   },
 })

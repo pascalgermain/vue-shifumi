@@ -1,5 +1,5 @@
 <template>
-  <img v-bind="{ src, alt, title }" :class="classes" @click="click" />
+  <input type="image" v-bind="{ src, alt }" :class="classes" @click="click" />
 </template>
 
 <script lang="ts">
@@ -31,10 +31,6 @@ export default defineComponent({
       return ucfirst(this.choiceLower)
     },
 
-    title(): string {
-      return this.disabled ? '' : this.alt
-    },
-
     classes(): CssClass {
       return [
         this.$style.image,
@@ -62,10 +58,10 @@ $border-width: 3px;
   width: 57px;
   height: 57px;
   margin: 20px 4px 0;
-}
 
-.clickable {
-  cursor: pointer;
+  &:not(.clickable) {
+    cursor: default;
+  }
 }
 
 .disabled {
