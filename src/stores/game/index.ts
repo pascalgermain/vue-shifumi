@@ -1,10 +1,12 @@
 import Vue from 'vue'
 
+import { objectKeys } from '@/utils/common'
+
 import { Choice, Player, Scene, Step } from './types'
 
 export * from './types'
 
-export const choices = Object.keys(Choice) as (keyof typeof Choice)[]
+export const choices = objectKeys(Choice)
 
 const state: {
   scene: keyof typeof Scene
